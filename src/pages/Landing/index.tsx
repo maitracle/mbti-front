@@ -2,7 +2,8 @@ import React from 'react';
 
 import LandingImage from '../../assets/LandingImage.png'
 
-import './landing.css'
+import './styles.css'
+import Button from '../../components/Button';
 
 const Landing = () => {
   return (
@@ -16,9 +17,9 @@ const Landing = () => {
           딱 맞는 이성친구와 연락하세요.
         </div>
 
-        <button className={'action-button'}>
+        <Button>
           이성친구 찾으러 가기
-        </button>
+        </Button>
 
         <div className={'link-wrapper'}>
           <a href={'https://www.16personalities.com/ko'}>
