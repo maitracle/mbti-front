@@ -5,11 +5,12 @@ import './styles.css';
 
 type Props = {
   children: string;
+  onClick: Function;
 }
 
-const Button = ({ children }: Props) => {
+const Button = ({ children, onClick }: Props) => {
   return (
-    <button className={'button'}>
+    <button className={'button'} onClick={() => onClick()}>
       {children}
     </button>
   )

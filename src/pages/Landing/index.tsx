@@ -17,7 +17,7 @@ const Landing = () => {
           딱 맞는 이성친구와 연락하세요.
         </div>
 
-        <Button>
+        <Button onClick={() => null}>
           이성친구 찾으러 가기
         </Button>
 
