@@ -5,7 +5,7 @@ import FormWrapper from '../FormWrapper';
 
 
 type Props = {
-  type: 'text' | 'new-password';
+  type: 'text' | 'password';
   label: string;
   value: string;
   onChange: Function;

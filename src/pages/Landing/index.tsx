@@ -4,6 +4,7 @@ import LandingImage from '../../assets/LandingImage.png'
 
 import './styles.css'
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
@@ -17,9 +18,11 @@ const Landing = () => {
           딱 맞는 이성친구와 연락하세요.
         </div>
 
-        <Button onClick={() => null}>
-          이성친구 찾으러 가기
-        </Button>
+        <Link to={'/log-in'}>
+          <Button onClick={() => null}>
+            이성친구 찾으러 가기
+          </Button>
+        </Link>
 
         <div className={'link-wrapper'}>
           <a href={'https://www.16personalities.com/ko'}>
@@ -35,7 +38,7 @@ const Landing = () => {
             나와 맞는 이성친구를 만나요.
           </div>
           <div className={'contents-description'}>
-            나랑 잘 맞는지 확인하려 이리저리 재보고 밀당하는 데 지치셨나요? 필요한 것은 성별, 그리고 연락을 위한 오픈채팅 링크밖에 없습니다.
+            나랑 잘 맞는지 확인하려 이리저리 재보고 밀당하는 데 지치셨나요? 필요한 것은 MBTI와 성별, 그리고 연락을 위한 오픈채팅 링크밖에 없습니다.
           </div>
         </div>
 

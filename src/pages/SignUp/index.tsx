@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Redirect } from 'react-router-dom';
 import './styles.css';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
@@ -60,6 +60,8 @@ const SignUp = () => {
 
   return (
     <div className={'sign-up-page-wrapper'}>
+      {userReducer.isLoggedIn ?
+        <Redirect to={'/matching'} /> : null}
       <div className={'sign-up-title'}>
         회원가입
       </div>
@@ -68,7 +70,7 @@ const SignUp = () => {
         <TextInput type={'text'} label={'아이디'} value={userReducer.signUpInfo.username}
                    onChange={usernameChangeHandler} />
 
-        <TextInput type={'text'} label={'비밀번호'} value={userReducer.signUpInfo.password}
+        <TextInput type={'password'} label={'비밀번호'} value={userReducer.signUpInfo.password}
                    onChange={passwordChangeHandler} />
 
         <FormWrapper label={'성별'}>

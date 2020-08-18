@@ -6,6 +6,7 @@ import TextInput from '../../components/TextInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { logIn, setLogInInfo } from '../../store/user/actions';
+import { Link, Redirect } from 'react-router-dom';
 
 
 const LogIn = () => {
@@ -26,6 +27,8 @@ const LogIn = () => {
 
   return (
     <div className={'log-in-page-wrapper'}>
+      {userReducer.isLoggedIn ?
+        <Redirect to={'/matching'} /> : null}
       <div className={'log-in-title'}>
         로그인
       </div>
@@ -34,17 +37,17 @@ const LogIn = () => {
         <TextInput type={'text'} label={'아이디'} value={userReducer.logInInfo.username}
                    onChange={usernameChangeHandler} />
 
-        <TextInput type={'new-password'} label={'비밀번호'} value={userReducer.logInInfo.password}
+        <TextInput type={'password'} label={'비밀번호'} value={userReducer.logInInfo.password}
                    onChange={passwordChangeHandler} />
 
         <Button onClick={logInHandler}>
           로그인
         </Button>
-        <a href={'/sign-up'}>
+        <Link to={'/sign-up'}>
           <Button onClick={() => null}>
             회원가입
           </Button>
-        </a>
+        </Link>
       </div>
     </div>
   );
