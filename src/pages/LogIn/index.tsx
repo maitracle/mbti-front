@@ -40,9 +40,11 @@ const LogIn = () => {
         <Button onClick={logInHandler}>
           로그인
         </Button>
-        <Button onClick={logInHandler}>
-          회원가입
-        </Button>
+        <a href={'/sign-up'}>
+          <Button onClick={() => null}>
+            회원가입
+          </Button>
+        </a>
       </div>
     </div>
   );

@@ -10,3 +10,7 @@
 .sign-up-form-wrapper {
   margin-top: 30px;
 }
+
+.sign-up-error-message {
+  color: red;
+}
