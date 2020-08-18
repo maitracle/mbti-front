@@ -4,7 +4,7 @@ import './styles.css';
 
 
 type Props = {
-  type: 'text' | 'password';
+  type: 'text' | 'new-password';
   label: string;
   value: string;
   onChange: Function;

@@ -21,7 +21,6 @@ const LogIn = () => {
   };
 
   const logInHandler = () => {
-    console.log('try log in');
     dispatch(logIn.request(userReducer.logInInfo));
   };
 
@@ -38,7 +37,7 @@ const LogIn = () => {
         </div>
 
         <div className={'input-wrapper'}>
-          <TextInput type={'password'} label={'비밀번호'} value={userReducer.logInInfo.password}
+          <TextInput type={'new-password'} label={'비밀번호'} value={userReducer.logInInfo.password}
                      onChange={passwordChangeHandler} />
         </div>
 

@@ -4,7 +4,7 @@ import { LOG_IN_FAILURE, LOG_IN_SUCCESS, SET_LOG_IN_INFO } from './actions';
 
 
 const initialState: UserState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   logInInfo: {
     username: '',
     password: '',
@@ -22,9 +22,11 @@ const userReducer = createReducer<UserState, UserAction>(initialState, {
   }),
   [LOG_IN_SUCCESS]: state => ({
     ...state,
+    isLoggedIn: true,
   }),
   [LOG_IN_FAILURE]: state => ({
     ...state,
+    isLoggedIn: false,
   }),
 });
 
