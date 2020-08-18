@@ -1,6 +1,8 @@
 import { createReducer } from 'typesafe-actions';
 import { UserAction, UserState } from './types';
 import {
+  FETCH_MATCH_USER_FAILURE,
+  FETCH_MATCH_USER_SUCCESS,
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
   SET_LOG_IN_INFO,
@@ -25,6 +27,13 @@ const initialState: UserState = {
     contact: '',
     view_count: 0,
   },
+  matchUserInfo: {
+    contact: '',
+    gender: '',
+    introduce: '',
+    mbti: '',
+    errorMessage: '이 페이지에서 이탈하면 다시는 이 분과 매칭될 수 없습니다!',
+  }
 };
 
 
@@ -58,6 +67,19 @@ const userReducer = createReducer<UserState, UserAction>(initialState, {
   [SIGN_UP_FAILURE]: state => ({
     ...state,
     isLoggedIn: false,
+  }),
+  [FETCH_MATCH_USER_SUCCESS]: (state, action) => ({
+    ...state,
+    matchUserInfo: {
+      ...action.payload,
+    },
+  }),
+  [FETCH_MATCH_USER_FAILURE]: (state, action) => ({
+    ...state,
+    matchUserInfo: {
+      ...state.matchUserInfo,
+      errorMessage: action.payload,
+    }
   }),
 });
 
