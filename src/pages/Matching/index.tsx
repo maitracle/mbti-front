@@ -12,8 +12,10 @@ const Matching = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMatchUser.request());
-  }, []);
+    if (userReducer.isLoggedIn) {
+      dispatch(fetchMatchUser.request());
+    }
+  }, [userReducer.isLoggedIn]);
 
   return (
     <div className={'matching-page-wrapper'}>
@@ -49,6 +51,7 @@ const Matching = () => {
         <div>
           {userReducer.matchUserInfo.contact}
         </div>
+        <a href={userReducer.matchUserInfo.contact}>연락하기</a>
       </FormWrapper>
     </div>
   );

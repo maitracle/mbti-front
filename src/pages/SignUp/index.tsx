@@ -9,6 +9,25 @@ import { RootState } from '../../store';
 import FormWrapper from '../../components/FormWrapper';
 
 
+const mbtiList = [
+  'ISTJ',
+  'ISTP',
+  'ISFJ',
+  'ISFP',
+  'INFJ',
+  'INFP',
+  'INTJ',
+  'INTP',
+  'ESTP',
+  'ESTJ',
+  'ESFP',
+  'ESFJ',
+  'ENFP',
+  'ENFJ',
+  'ENTP',
+  'ENTJ',
+];
+
 const SignUp = () => {
   const userReducer = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
@@ -83,13 +102,15 @@ const SignUp = () => {
         <FormWrapper label={'MBTI'}>
           <select name="mbti" style={{ width: '100%' }} onChange={mbtiChangeHandler}>
             <option />
-            <option>ENTP</option>
-            <option>INTP</option>
+            {mbtiList.map((value: string) => <option key={value}>{value}</option>)}
           </select>
         </FormWrapper>
 
         <TextInput type={'text'} label={'Open Kakao Link'} value={userReducer.signUpInfo.contact}
                    onChange={contactChangeHandler} />
+        <div>
+          1:1 채팅방으로 만들어주세요.
+        </div>
         <a href={'https://cs.kakao.com/helps?articleId=1073184402&service=8&category=105&device=1&locale=ko'}>
           카카오 오픈채팅방 만드는 법
         </a>
