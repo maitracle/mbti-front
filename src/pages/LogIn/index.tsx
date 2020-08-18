@@ -27,19 +27,15 @@ const LogIn = () => {
   return (
     <div className={'log-in-page-wrapper'}>
       <div className={'log-in-title'}>
-        로그인 {userReducer.isLoggedIn ? 'true' : 'false'}
+        로그인
       </div>
 
       <div className={'form-wrapper'}>
-        <div className={'input-wrapper'}>
-          <TextInput type={'text'} label={'아이디'} value={userReducer.logInInfo.username}
-                     onChange={usernameChangeHandler} />
-        </div>
+        <TextInput type={'text'} label={'아이디'} value={userReducer.logInInfo.username}
+                   onChange={usernameChangeHandler} />
 
-        <div className={'input-wrapper'}>
-          <TextInput type={'new-password'} label={'비밀번호'} value={userReducer.logInInfo.password}
-                     onChange={passwordChangeHandler} />
-        </div>
+        <TextInput type={'new-password'} label={'비밀번호'} value={userReducer.logInInfo.password}
+                   onChange={passwordChangeHandler} />
 
         <Button onClick={logInHandler}>
           로그인
