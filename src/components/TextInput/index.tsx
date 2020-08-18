@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './styles.css';
+import FormWrapper from '../FormWrapper';
 
 
 type Props = {
@@ -12,12 +13,9 @@ type Props = {
 
 const TextInput = ({ type, label, value, onChange }: Props) => {
   return (
-    <div className={'input-wrapper'}>
-      <div className={'input-label'}>
-        {label}
-      </div>
+    <FormWrapper label={label}>
       <input type={type} className={'input'} value={value} onChange={(e) => onChange(e.target.value)} />
-    </div>
+    </FormWrapper>
   )
 };
 

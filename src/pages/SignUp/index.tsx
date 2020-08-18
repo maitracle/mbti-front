@@ -3,25 +3,37 @@ import React from 'react';
 import './styles.css';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
-import { useDispatch } from 'react-redux';
-import { signUp } from '../../store/user/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSignUpInfo, signUp } from '../../store/user/actions';
+import { RootState } from '../../store';
+import FormWrapper from '../../components/FormWrapper';
 
 
 const SignUp = () => {
+  const userReducer = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
 
-  const signUpHandler = () => {
-    const payload = {
-      username: '',
-      password: '',
-      gender: 'MALE',
-      mbti: '',
-      introduce: '',
-      contact: '',
-      view_count: 0,
-    };
+  const usernameChangeHandler = (value: string) => {
+    dispatch(setSignUpInfo({ username: value }));
+  };
+  const passwordChangeHandler = (value: string) => {
+    dispatch(setSignUpInfo({ password: value }));
+  };
+  const genderChangeHandler = (value: 'MALE' | 'FEMALE') => {
+    dispatch(setSignUpInfo({ gender: value }));
+  };
+  const mbtiChangeHandler = (e: React.FormEvent<HTMLSelectElement>) => {
+    dispatch(setSignUpInfo({ mbti: e.currentTarget.value }));
+  };
+  const contactChangeHandler = (value: string) => {
+    dispatch(setSignUpInfo({ contact: value }));
+  };
+  const introduceChangeHandler = (value: string) => {
+    dispatch(setSignUpInfo({ introduce: value }));
+  };
 
-    dispatch(signUp.request(payload));
+  const signUpHandler = () => {
+    dispatch(signUp.request(userReducer.signUpInfo));
   };
 
   return (
@@ -31,30 +43,35 @@ const SignUp = () => {
       </div>
 
       <div className={'sign-up-form-wrapper'}>
-        <TextInput type={'text'} label={'아이디'} value={''}
-                   onChange={() => null} />
+        <TextInput type={'text'} label={'아이디'} value={userReducer.signUpInfo.username}
+                   onChange={usernameChangeHandler} />
 
-        <TextInput type={'text'} label={'비밀번호'} value={''}
-                   onChange={() => null} />
+        <TextInput type={'text'} label={'비밀번호'} value={userReducer.signUpInfo.password}
+                   onChange={passwordChangeHandler} />
 
-        <TextInput type={'text'} label={'성별'} value={''}
-                   onChange={() => null} />
+        <FormWrapper label={'성별'}>
+          <input type={'radio'} checked={userReducer.signUpInfo.gender === 'MALE'}
+                 onChange={() => genderChangeHandler('MALE')} /> <span>남자</span>
+          <input type={'radio'} checked={userReducer.signUpInfo.gender === 'FEMALE'}
+                 onChange={() => genderChangeHandler('FEMALE')} /> <span>여자</span>
+        </FormWrapper>
 
-        <select name="mbti" style={{width: '100%'}}>
-          <option>ENTP</option>
-          <option>INTP</option>
-        </select>
+        <FormWrapper label={'MBTI'}>
+          <select name="mbti" style={{ width: '100%' }} onChange={mbtiChangeHandler}>
+            <option>ENTP</option>
+            <option>INTP</option>
+          </select>
+        </FormWrapper>
 
-        <TextInput type={'text'} label={'Open Kakao Link'} value={''}
-                   onChange={() => null} />
+
+        <TextInput type={'text'} label={'Open Kakao Link'} value={userReducer.signUpInfo.contact}
+                   onChange={contactChangeHandler} />
         <a href={'https://cs.kakao.com/helps?articleId=1073184402&service=8&category=105&device=1&locale=ko'}>
           카카오 오픈채팅방 만드는 법
         </a>
 
-        <div className={'sign-up-one-sentence-wrapper'}>
-          <TextInput type={'text'} label={'상대방에게 하고싶은 한마디'} value={''}
-                     onChange={() => null} />
-        </div>
+        <TextInput type={'text'} label={'상대방에게 하고싶은 한마디'} value={userReducer.signUpInfo.introduce}
+                   onChange={introduceChangeHandler} />
 
         <Button onClick={signUpHandler}>회원가입</Button>
       </div>

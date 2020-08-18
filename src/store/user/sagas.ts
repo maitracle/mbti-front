@@ -26,19 +26,9 @@ const SignUpApi = (payload: SignUpInfo) => axios.post(HOST + '/api/users', paylo
 
 function* SignUpAsync(action: { type: string, payload: SignUpInfo }) {
   try {
-    // const payload: SignUpInfo = {
-    //   "username": "222",
-    //   "password": "password",
-    //   "gender": "MALE",
-    //   "introduce": "",
-    //   "mbti": "ENTP",
-    //   "contact": "link",
-    //   "view_count": 0
-    // };
-    console.log(action.payload);
-    // const res = yield call(SignUpApi, action.payload);
+    const res = yield call(SignUpApi, action.payload);
 
-    // localStorage.setItem('token', res.data.token);
+    localStorage.setItem('token', res.data.token);
 
     yield put(signUp.success());
   } catch (e) {

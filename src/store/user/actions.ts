@@ -1,5 +1,5 @@
 import { createAction, createAsyncAction } from 'typesafe-actions';
-import { LogInInfo, SetLogInInfoPayload, SetSignUpInfoPayload } from './types';
+import { LogInInfo, SetLogInInfoPayload, SetSignUpInfoPayload, SignUpInfo } from './types';
 
 
 export const SET_LOG_IN_INFO = 'users/SET_LOG_IN_INFO';
@@ -29,4 +29,4 @@ export const signUp = createAsyncAction(
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
-)<LogInInfo, void, string>();
+)<SignUpInfo, void, string>();
