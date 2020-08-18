@@ -2,9 +2,28 @@ import React from 'react';
 
 import './styles.css';
 import TextInput from '../../components/TextInput';
+import Button from '../../components/Button';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../store/user/actions';
 
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+
+  const signUpHandler = () => {
+    const payload = {
+      username: '',
+      password: '',
+      gender: 'MALE',
+      mbti: '',
+      introduce: '',
+      contact: '',
+      view_count: 0,
+    };
+
+    dispatch(signUp.request(payload));
+  };
+
   return (
     <div className={'sign-up-page-wrapper'}>
       <div className={'sign-up-title'}>
@@ -36,6 +55,8 @@ const SignUp = () => {
           <TextInput type={'text'} label={'상대방에게 하고싶은 한마디'} value={''}
                      onChange={() => null} />
         </div>
+
+        <Button onClick={signUpHandler}>회원가입</Button>
       </div>
     </div>
   );
